@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :likes
+  resources :beers_flavors
+  resources :orders
+  resources :flights
+  resources :users
+  resources :flavors
+  resources :beers
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root to: "users#index"
+  get "/login", to: "auth#login", as: "login"
+  post "/login", to: "auth#verify_username"
+  get "/logout", to: "auth#logout", as: "logout"
+  get "/search", to: "beers#search", :as => "search_page"
 end
